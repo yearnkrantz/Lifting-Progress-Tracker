@@ -1,21 +1,41 @@
 # 💪 Gym Lifting Progress Tracker
 
-A personal Shiny app for tracking and visualizing weightlifting progress over time.
+A personal Shiny app for logging, visualizing, and analyzing weightlifting progress over time. Upload an existing workout log or start fresh — all data is stored locally on your machine.
+
+---
+
+## Screenshot
+
+![App Screenshot](screenshot.png)
+
+> *To add your own screenshot: launch the app, take a screenshot, save it as `screenshot.png` in the project folder, and run `git add screenshot.png && git commit -m "Add screenshot" && git push`.*
+
+---
 
 ## Features
 
-- **Upload** an existing workout log (`.csv` or `.xlsx`) or start a fresh log
-- **Visualize** weight, volume, reps, and sets over time — faceted by exercise
-- **Track progress rate** — linear trend (kg/month) per exercise
-- **Monthly frequency** and **training consistency** charts
-- **Personal records** table
-- **Session view** — browse any training day
-- **Manage entries** — add, edit, or delete rows directly in the app
-- **Download** your full dataset or a summary stats CSV at any time
+| Tab | What it shows |
+|---|---|
+| **Weight Progression** | Weight lifted over time, faceted by exercise |
+| **Volume Progression** | Sets × Reps × Weight per session |
+| **Repetitions / Sets** | Rep and set counts over time |
+| **Progress Rate** | Linear trend line (kg / month) with a summary table |
+| **Monthly Frequency** | Exercises per month, broken down by split |
+| **Training Consistency** | Training days per week vs. your average |
+| **Volume by Split** | Total session volume grouped by training split |
+| **Summary Stats** | Per-exercise averages, maxes, and session counts |
+| **Personal Records** | Heaviest lift ever recorded per exercise |
+| **Session View** | Browse any training day with prev/next navigation |
+| **Manage Entries** | Add, edit, or delete individual log rows |
+
+**Sidebar filters** — slice any view by body part, split, date range, or specific exercises.  
+**Downloads** — export your full dataset or a summary stats CSV at any time.
+
+---
 
 ## Data Format
 
-Your input file should have these columns (a header row is required):
+Your input file (`.csv` or `.xlsx`) must include these columns:
 
 | Column | Type | Example |
 |---|---|---|
@@ -28,16 +48,48 @@ Your input file should have these columns (a header row is required):
 | `Weight` | numeric (kg) | `80` |
 | `Notes` | text (optional) | `used belt` |
 
-## Running Locally
+A header row is required. The `Notes` column is optional — the app will add it automatically if it is missing.
+
+---
+
+## Setup
+
+### Requirements
+
+- [R](https://cran.r-project.org/) ≥ 4.1
+- The following R packages:
 
 ```r
-# Install required packages (first time only)
 install.packages(c("shiny", "ggplot2", "dplyr", "lubridate", "DT", "readxl"))
-
-# Run the app
-shiny::runApp("app.R")
 ```
 
-## Privacy Note
+### Run from GitHub
 
-Your data is stored **locally only** — no data is sent anywhere. The app saves a `tracker_config.txt` file in its directory to remember which CSV file you were using between sessions. Neither this file nor your CSV data should be committed to version control (both are excluded via `.gitignore`).
+```r
+# Option 1 — run directly from GitHub (no clone needed)
+shiny::runGitHub("Lifting-Progress-Tracker", "yearnkrantz")
+```
+
+```bash
+# Option 2 — clone and run locally
+git clone https://github.com/yearnkrantz/Lifting-Progress-Tracker.git
+cd Lifting-Progress-Tracker
+```
+
+```r
+shiny::runApp()
+```
+
+### First launch
+
+On first run the app will ask whether you want to:
+- **Upload** an existing `.csv` or `.xlsx` workout log, or
+- **Start fresh** and name a new save file.
+
+Your save file path is remembered in `tracker_config.txt` so the app reopens your log automatically on subsequent launches.
+
+---
+
+## Privacy
+
+All data is stored **locally only** — nothing is sent to any server. Both `tracker_config.txt` and your `.csv` data files are excluded from version control via `.gitignore`.
