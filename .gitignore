@@ -1,0 +1,13 @@
+# R session artifacts
+.RData
+.Rhistory
+.Rproj.user/
+
+# Personal workout data — do not commit
+*.csv
+tracker_config.txt
+
+# Deployment artifacts
+rsconnect/
+manifest.json
+*.tar
