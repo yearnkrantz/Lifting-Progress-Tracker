@@ -4,14 +4,6 @@ A personal Shiny app for logging, visualizing, and analyzing weightlifting progr
 
 ---
 
-## Screenshot
-
-![App Screenshot](screenshot.png)
-
-> *To add your own screenshot: launch the app, take a screenshot, save it as `screenshot.png` in the project folder, and run `git add screenshot.png && git commit -m "Add screenshot" && git push`.*
-
----
-
 ## Features
 
 | Tab | What it shows |
